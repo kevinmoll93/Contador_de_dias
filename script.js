@@ -46,13 +46,17 @@ function somaDias() {
     
    var dataUm = new Date(document.querySelector('.add__date-two').value);
    var dataDois = new Date(document.querySelector('.add__date-one').value);
-   var resultado = parseInt(((dataUm - dataDois) / (60 * 60 * 24 * 1000)) + 1);
 
-   dias.push(resultado)
-   total = total + dias[n]
-   n++
+   if(validateDate(dataUm) && validateDate(dataDois)){
+      var resultado = parseInt(((dataUm - dataDois) / (60 * 60 * 24 * 1000)) + 1);
 
-   document.getElementById('total').innerHTML = total + ' Days';
+      dias.push(resultado)
+      total = total + dias[n]
+      n++
+   
+      document.getElementById('total').innerHTML = total + ' Days';
+   }
+   
 }
 
 
@@ -62,37 +66,46 @@ document.querySelector('.add__check').addEventListener('click', function() {
    var inputValue1 = new Date(document.getElementById('dataUm').value);
 
    var inputValue2 = new Date(document.getElementById('dataDois').value);
-   console.log(typeof inputValue1);
 
-   var day1 = inputValue1.getUTCDate();
-   var month1 = inputValue1.getUTCMonth() + 1;
-   var year1 = inputValue1.getFullYear();
+   if(validateDate(inputValue1) && validateDate(inputValue2)){
+      var day1 = inputValue1.getUTCDate();
+      var month1 = inputValue1.getUTCMonth() + 1;
+      var year1 = inputValue1.getFullYear();
 
-   if (day1 < 10 ) {
-      day1 = '0' + day1;
+      if (day1 < 10 ) {
+         day1 = '0' + day1;
+      }
+
+      if (month1 < 10) {
+         month1 = '0' + month1;
+      }
+
+      var day2 = inputValue2.getUTCDate();
+      var month2 = inputValue2.getUTCMonth() + 1;
+      var year2 = inputValue2.getFullYear();
+
+      if (day2 < 10 ) {
+         day2 = '0' + day2;
+      }
+
+      if (month2 < 10) {
+         month2 = '0' + month2;
+      }
+
+      if (true) {
+         document.getElementById('firstdate').innerHTML += day2 + ' / ' + month2 + ' / ' + year2 + '</br>';
+         document.getElementById('seconddate').innerHTML += day1 + ' / ' + month1 + ' / ' + year1 + '</br>';
+         document.getElementById('sinal').innerHTML += '-' + '</br>';
+         document.getElementById('resultdays').innerHTML += difDias() + ' Days' + '</br>';
+      }
    }
 
-   if (month1 < 10) {
-      month1 = '0' + month1;
-   }
-
-   var day2 = inputValue2.getUTCDate();
-   var month2 = inputValue2.getUTCMonth() + 1;
-   var year2 = inputValue2.getFullYear();
-
-   if (day2 < 10 ) {
-      day2 = '0' + day2;
-   }
-
-   if (month2 < 10) {
-      month2 = '0' + month2;
-   }
-
-   if (true) {
-       document.getElementById('firstdate').innerHTML += day2 + ' / ' + month2 + ' / ' + year2 + '</br>';
-       document.getElementById('seconddate').innerHTML += day1 + ' / ' + month1 + ' / ' + year1 + '</br>';
-       document.getElementById('sinal').innerHTML += '-' + '</br>';
-       document.getElementById('resultdays').innerHTML += difDias() + ' Days' + '</br>';
-   }
+   
 
 })
+
+function validateDate(date){
+   if (date.toString() === "Invalid Date") return false
+   console.log("Validating date:",date);
+   return true
+}
