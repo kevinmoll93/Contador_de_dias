@@ -11,7 +11,7 @@ function date() {
     day = now.getDate();
     year = now.getFullYear();
  
-    document.getElementById('monthday').innerHTML = months[month] + ' ' + dates[day] + ''+ ', ' + year;
+    document.getElementById('monthday').innerHTML = `${months[month]} ${dates[day] , year}`;
  
  };
  
@@ -89,8 +89,8 @@ document.querySelector('.add__check').addEventListener('click', function() {
    }
 
    if (true) {
-       document.getElementById('firstdate').innerHTML += day2 + ' / ' + month2 + ' / ' + year2 + '</br>';
-       document.getElementById('seconddate').innerHTML += day1 + ' / ' + month1 + ' / ' + year1 + '</br>';
+       document.getElementById('firstdate').innerHTML += `${day2} / ${month2} / ${year} </br>`;
+       document.getElementById('seconddate').innerHTML += `${day1} / ${month1} / ${year} </br>`;
        document.getElementById('sinal').innerHTML += '-' + '</br>';
        document.getElementById('resultdays').innerHTML += difDias() + ' Days' + '</br>';
    }
